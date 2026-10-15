@@ -1,0 +1,6 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+results/*.pt
+checkpoints/
+!results/un0_dynamics.pt

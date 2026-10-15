@@ -1,0 +1,26 @@
+# conda env create -f environment.yml   ->   conda activate osc-attention
+# PyTorch is the CUDA 12.8 build (needed for RTX 50-series GPUs); it also runs on CPU.
+name: osc-attention
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.11.0
+      - numpy
+      - scipy
+      - matplotlib
+      - torchdiffeq
+      - tqdm
+      - pillow
+      - pytest
+      # to execute the tutorial notebooks in notebooks/ headlessly:
+      - nbformat
+      - nbclient
+      - ipykernel
+      # Un-0 (MIT), pinned; installed without its image-training extras (datasets, torchvision, ...)
+      # because we only use its Kuramoto dynamics:
+      #   pip install --no-deps "un0 @ git+https://github.com/unconv-ai/Un-0.git@75243cab846c092527734925c2433b556f5e5ee7"
+      - -e .
